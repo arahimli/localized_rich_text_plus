@@ -68,7 +68,7 @@ class LocalizedWidget extends StatelessWidget {
 
 ## Screenshot
 
-![App](example/files/screenshot.png)
+<img src="https://raw.githubusercontent.com/arahimli/localized_rich_text_plus/main/example/files/screenshot.png">
 
 
 <hr>
