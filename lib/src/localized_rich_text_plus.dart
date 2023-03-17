@@ -5,34 +5,50 @@ import 'package:flutter/material.dart';
 
 // LocalizedRichText
 class LocalizedRichText extends StatelessWidget {
-
-
   LocalizedRichText(
-      this.defaultText, {
-        Key? key,
-        this.richTexts = const [],
-        this.caseSensitive = true,
-        this.maxLines,
-        this.overflow = TextOverflow.clip,
-        this.textAlign = TextAlign.start,
-      }) : super(key: key) {
+    this.defaultText, {
+    Key? key,
+    this.richTexts = const [],
+    this.caseSensitive = true,
+    this.maxLines,
+    this.overflow = TextOverflow.clip,
+    this.textAlign = TextAlign.start,
+  }) : super(key: key) {
     separateText();
   }
-
+  /// The text will be localized.
   final Text defaultText;
+
+  /// The texts will be localized.
   final List<LocalRichText> richTexts;
   final List<TextSpan> _resultRichTexts = [];
-  final int? maxLines;
-  final bool caseSensitive; //Whether to ignore case
+
+  /// How visual overflow should be handled.
   final TextOverflow overflow;
+  /// An optional maximum number of lines for the text to span, wrapping if necessary.
+  /// If the text exceeds the given number of lines, it will be truncated according
+  /// to [overflow].
+  ///
+  /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+  /// edge of the box.
+  final int? maxLines;
+
+  final bool caseSensitive; //Whether to ignore case
+  /// How the text should be aligned horizontally.
   final TextAlign textAlign;
+  /// The directionality of the text.
+  ///
+  /// This decides how [textAlign] values like [TextAlign.start] and
+  /// [TextAlign.end] are interpreted.
+
   //Split string
   separateText() {
     List<_RichTextModel> result = [];
     String defaultStr = defaultText.data ?? "";
     //Find the position of the substring
     for (var richText in richTexts) {
-      RegExp regex = RegExp(richText.originalText, caseSensitive: caseSensitive);
+      RegExp regex =
+          RegExp(richText.originalText, caseSensitive: caseSensitive);
       Iterable<RegExpMatch> matches = regex.allMatches(defaultStr);
       for (var match in matches) {
         int start = match.start;
@@ -103,7 +119,8 @@ class LocalRichText extends StatelessWidget {
     Key? key,
     required this.originalText,
     required this.localizedText,
-    this.style, this.onTap,
+    this.style,
+    this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

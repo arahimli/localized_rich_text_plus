@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-
             richTexts: [
               LocalRichText(
                 originalText: 'paymentRulesText',
